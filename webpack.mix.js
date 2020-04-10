@@ -51,3 +51,5 @@ function publishAseets () {
   fs.copySync(path.join(publicDir, 'build', 'dist'), path.join(publicDir, 'dist'))
   fs.removeSync(path.join(publicDir, 'build'))
 }
+
+mix.browserSync('127.0.0.1:8000');

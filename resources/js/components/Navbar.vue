@@ -31,6 +31,10 @@
                 <fa icon="cog" fixed-width />
                 {{ $t('settings') }}
               </router-link>
+              <router-link :to="{ name: 'personal' }" class="dropdown-item pl-3">
+                <fa icon="cog" fixed-width />
+                {{ $t('title_personal') }}
+              </router-link>
 
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
