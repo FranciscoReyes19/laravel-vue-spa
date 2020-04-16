@@ -31,7 +31,7 @@
                 <fa icon="cog" fixed-width />
                 {{ $t('settings') }}
               </router-link>
-              <router-link :to="{ name: 'personal' }" class="dropdown-item pl-3">
+              <router-link :to="{ name: 'personal.listar' }" class="dropdown-item pl-3">
                 <fa icon="cog" fixed-width />
                 {{ $t('title_personal') }}
               </router-link>

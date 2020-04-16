@@ -1,44 +1,51 @@
 <template>
-  <card class="text-center">
-    <h3 class="mb-4">
-      {{ $t('title_personal') }}
-    </h3>
-    <h1>{{ info }}</h1>
-  </card>
+  <div class="row">
+    <div class="col-md-3">
+      <card :title="$t('registers')" class="settings-card">
+        <ul class="nav flex-column nav-pills">
+          <li v-for="tab in tabs" :key="tab.route" class="nav-item">
+            <router-link :to="{ name: tab.route }" class="nav-link" active-class="active">
+              <fa :icon="tab.icon" fixed-width />
+              {{ tab.name }}
+            </router-link>
+          </li>
+        </ul>
+      </card>
+    </div>
+
+    <div class="col-md-9">
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
-  
-  data () {
-    return {
-      info: null
+  middleware: 'auth',
+
+  computed: {
+    tabs () {
+      return [
+        {
+          icon: 'user',
+          name: this.$t('list'),
+          route: 'personal.listar'
+        },
+        {
+          icon: 'user',
+          name: this.$t('edit'),
+          route: 'personal.editar'
+        }
+      ]
     }
-  },
-  mounted () {
-    axios
-      .get('/api/personal')
-      .then(response => (this.info = response.data.personal))
   }
-
-/*
-  data: () => ({
-    wave: 'Personal',
-    origin: resp.data
-  }),
-
-  async function getData() {
-    
-    await axios.get('/data/personal').then(resp => {
-     
-      console.log(resp);
-      //data.origin = resp.data;
-      //return resp.data;
-
-    });
-  }
-*/
 }
 </script>
+
+<style>
+.settings-card .card-body {
+  padding: 0;
+}
+</style>
